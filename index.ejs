@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple Map</title>
+	<meta name="viewport" content="initial-scale=1.0">
+	<meta charset="utf-8">
+<style>
+
+#map, #info {
+	height: 100%;
+	width: 50%;
+	display: inline-block;
+}
+
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#info {
+	position: absolute;
+	top: 0;
+}
+
+#visitor_list {
+	overflow: auto;
+	height: 50%;
+}
+
+.visitor {
+	color: blue;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+</style>
+</head>
+<body>
+	<div id="map"></div>
+	<div id="info"></div>
+<script>
+let map;
+
+const getData = async (data) => {
+	const visitors = await fetch('/api/visitors').then(e => e.json())
+	info.innerHTML = `
+	 	<h1 id="big_info">You are visiting from ${data.city}, ${data.region}, ${data.country}</h1>
+	 	<hr>
+	 	<h1>Our other visitors</h1>
+	 	<div id="visitor_list"</div>
+	 `;
+	visitors.forEach(e => {
+		visitor_list.innerHTML += 
+		`<a class="visitor">${e.city}, ${e.region}, ${e.country} - ${e.count}</a>`;
+		new google.maps.Marker({ position: {lat: data.ll[0], lng: data.ll[1]}, map: map });
+	});
+	document.querySelectorAll('.visitor').forEach((item, i) => {
+  		item.addEventListener('click', () => {
+  			big_info.innerHTML = `You are looking at ${data.city}, ${data.region}, ${data.country}`;
+    		map = new google.maps.Map(document.getElementById('map'), {
+				center: {lat: visitors[i].ll[0], lng: visitors[i].ll[1]},
+				zoom: 12
+			});
+  		});
+	})
+}
+
+
+function initMap() {
+	const data = <%- JSON.stringify(data) %>
+	map = new google.maps.Map(document.getElementById('map'), {
+		center: {lat: data.ll[0], lng: data.ll[1]},
+		zoom: 12
+	});
+	getData(data);
+}
+//console.log(document.cookie);
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB29pGpCzE_JGIEMLu1SGIqwoIbc0sHFHo&callback=initMap"></script>
+</body>
+</html>

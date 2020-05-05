@@ -1,0 +1,24 @@
+{
+  "name": "noob.freedomains.dev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "deploy.config.js",
+  "scripts": {
+    "start:myproxy": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "myproxy@freedomains.dev:/home/myproxy/noob.freedomains.dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "ejs": "^3.1.2",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
+    "nodemon": "^2.0.3"
+  }
+}
