@@ -48,8 +48,8 @@ const getIP = async (req, res, next) => {
     ip = '98.207.70.219';
 	try {
 		if ('lurk' in req.cookies) {
-    		visitors[req.cookies.lurk].count++;
-    		req.location = visitors[req.cookies.lurk];
+			visitors[req.cookies.lurk].count++;
+			req.location = visitors[req.cookies.lurk];
 		}
 		else {
 			const init = await fetch(`https://js5.c0d3.com/location/api/ip/${ip}`)
