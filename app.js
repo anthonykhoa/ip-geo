@@ -44,8 +44,8 @@ const getIP = async (req, res, next) => {
     if ((lurkNum === -1) && ('lurk' in req.cookies)) {
     	delete req.cookies.lurk;
     }
-    //test ip, comment out below to test on proxy server
-    ip = '98.207.70.219';
+    //test ip for localserver testing
+    //ip = '98.207.70.219';
 	try {
 		if ('lurk' in req.cookies) {
 			visitors[req.cookies.lurk].count++;
