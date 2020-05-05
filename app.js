@@ -50,16 +50,14 @@ const getIP = async (req, res, next) => {
 		if ('lurk' in req.cookies) {
     		visitors[req.cookies.lurk].count++;
     		req.location = visitors[req.cookies.lurk];
-    		console.log('lurked')
-    	}
-    	else {
+		}
+		else {
 			const init = await fetch(`https://js5.c0d3.com/location/api/ip/${ip}`)
 			const data = await init.json();
 			if (data.error) {
 				throw new Error('UNACCEPTABLE IP ADDRESS. UNACCEPTABLEEEE!!! >:(');
 			}	
 			req.location = addVisit(data);
-			console.log('normal');
 		}
 		next();
 	}
