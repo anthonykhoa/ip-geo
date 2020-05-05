@@ -45,7 +45,7 @@ const getIP = async (req, res, next) => {
 		delete req.cookies.lurk;
 	}
     //test ip for localserver testing
-    ip = '98.207.70.219';
+    //ip = '98.207.70.219';
 	try {
 		if ('lurk' in req.cookies) {
 			visitors[req.cookies.lurk].count++;
