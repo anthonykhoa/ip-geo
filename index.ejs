@@ -50,18 +50,20 @@ const getData = async (data) => {
 	 	<h1>Our other visitors</h1>
 	 	<div id="visitor_list"</div>
 	 `;
-	visitors.forEach((e, i) => {
+	visitors.forEach(e => {
 		visitor_list.innerHTML += 
 		`<a class="visitor">${e.city}, ${e.region}, ${e.country} - ${e.count}</a>`;
 		new google.maps.Marker({ position: {lat: data.ll[0], lng: data.ll[1]}, map: map });
-		document.querySelectorAll('.visitor')[i].addEventListener('click', () => {
-  			big_info.innerHTML = `You are looking at ${data.city}, ${data.region}, ${data.country}`;
+	});
+	document.querySelectorAll('.visitor').forEach((item, i) => {
+		item.addEventListener('click', () => {
+			big_info.innerHTML = `You are looking at ${data.city}, ${data.region}, ${data.country}`;
 			map = new google.maps.Map(document.getElementById('map'), {
 				center: {lat: visitors[i].ll[0], lng: visitors[i].ll[1]},
 				zoom: 12
 			});
 		});
-	});
+	})
 }
 
 
