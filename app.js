@@ -40,12 +40,12 @@ const addVisit = (data) => {
 const getIP = async (req, res, next) => {
 	let ip = (req.headers['x-forwarded-for'] || req.ip);
 	ip = ip.split(':');
-    ip = ip[ip.length - 1];
-    if ((lurkNum === -1) && ('lurk' in req.cookies)) {
-    	delete req.cookies.lurk;
-    }
+	ip = ip[ip.length - 1];
+	if ((lurkNum === -1) && ('lurk' in req.cookies)) {
+		delete req.cookies.lurk;
+	}
     //test ip for localserver testing
-    //ip = '98.207.70.219';
+    ip = '98.207.70.219';
 	try {
 		if ('lurk' in req.cookies) {
 			visitors[req.cookies.lurk].count++;
